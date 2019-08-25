@@ -1,5 +1,4 @@
 # import and setup dependencies
-
 # to scrape from html
 from bs4 import BeautifulSoup as bs
 
@@ -17,6 +16,9 @@ from urllib.parse import urlsplit
 import time
 
 def scrape():
+    # set url to NASA news site and visit with splinter
+    url = "https://mars.nasa.gov/news/"
+    browser.visit(url)
     # get html from splinter and give to BeautifulSoup
     html = browser.html
     page_to_parse = bs(html,"html.parser")
@@ -93,6 +95,12 @@ def scrape():
             "mars_facts":mars_facts,
             "hemisphere_image_urls":hemisphere_image_urls    
             }
+    browser.quit()
+    return mars_info
+
+
+
+
 
 
   
