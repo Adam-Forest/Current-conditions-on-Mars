@@ -17,13 +17,62 @@
 
 <body>
   <div clas="container">
-    <div class="jumbotron text-center">
-      <h1>Whats up with Mars right now?</h1>
+    <div class="jumbotron text-center" style="background-image: url(https://wi-images.condecdn.net/image/Zxm8y7VnlZD/crop/810/f/TwnPks_RkGdn_left_high.jpg); background-size: 100% auto;">
+      <h1 style="text-shadow: 2px 2px 4px rgba(0,0,0,1); color: white;">Whats up with Mars right now?</h1>
       <a href="/scrape" class="btn btn-primary btn-sm"><i class="fas fa-redo"></i> Refresh</a>
     </div>
 
     <div class="jumbotron">
         <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="card text-white bg-primary">
+                  <div class="card-header">Mars Weather</div>
+                  <div class="card-body sb-8">
+         
+                    <p class="card-text">{{ mars_info.mars_weather }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                  <div class="card text-white bg-primary">
+                    <div class="card-header">Mars News</div>
+                    <div class="card-body sb-8">
+                      <h4 class="card-title">{{ mars_info.news_title }}</h4>
+                      <p class="card-text">{{ mars_info.news_p }}</p>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="col-md-4">
+                  <div class="card text-white bg-primary">
+                    <div class="card-header">Mars Featured Image</div>
+                    <img class="img-fluid" src="{{mars_info.featured_image_url}}" alt="{{mars_info.news_title}}">
+                  </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary">
+                      <div class="card-header">Mars Facts</div>
+                      <div class="card-body sb-8">
+             
+                        <p class="card-text">{{ mars_info.mars_facts | safe }}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="jumbotron">
+      <div class="row">
+
+  
+
+
       {% for hemi in mars_info.hemisphere_image_urls %}
         
           <div class="col-md-3">
@@ -35,55 +84,10 @@
           </div>
         
         {% endfor %}
-      </div>
-    </div>
-
-
-    <div class="jumbotron">
-      <div class="row">
-
-        <div class="col-md-6">
-          <div class="card text-white bg-primary">
-            <div class="card-header">Mars News</div>
-            <div class="card-body sb-8">
-              <h4 class="card-title">{{ mars_info.news_title }}</h4>
-              <p class="card-text">{{ mars_info.news_p }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card text-white bg-primary">
-            <div class="card-header">Mars Featured Image</div>
-            <img class="img-fluid w-100" src="{{mars_info.featured_image_url}}" alt="{{mars_info.news_title}}">
-          </div>
-        </div>
 
       </div>
 
-      <div class="row">
-          <div class="col-md-6">
-              <div class="card text-white bg-primary">
-                <div class="card-header">Mars Weather</div>
-                <div class="card-body sb-8">
-       
-                  <p class="card-text">{{ mars_info.mars_weather }}</p>
-                </div>
-              </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card text-white bg-primary">
-                  <div class="card-header">Mars Facts</div>
-                  <div class="card-body sb-8">
-         
-                    <p class="card-text">{{ mars_info.mars_facts | safe }}</p>
-                  </div>
-                </div>
-              </div>
-          </div>
-
-    </div>
 
 
   </div>
