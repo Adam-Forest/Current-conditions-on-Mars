@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup as bs
 
 # to control browser
 from splinter import Browser
-browser = Browser("chrome", headless=False)
 
 # to format data
 import pandas as pd
@@ -16,9 +15,12 @@ from urllib.parse import urlsplit
 import time
 
 def scrape():
+    browser = Browser("chrome", headless=False)
     # set url to NASA news site and visit with splinter
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
+    # give page time to load
+    time.sleep(3)
     # get html from splinter and give to BeautifulSoup
     html = browser.html
     page_to_parse = bs(html,"html.parser")
@@ -28,11 +30,15 @@ def scrape():
     # set link to get jpl image, send splinter to fetch
     jpl_image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(jpl_image_url)
+    # give page time to load
+    time.sleep(1)
     # navigate browser to full size image
     browser.click_link_by_partial_text('FULL IMAGE')
     # give page time to load
-    time.sleep(5)
+    time.sleep(3)
     browser.click_link_by_partial_text('more info')
+    # give page time to load
+    time.sleep(1)
     # get html from splinter and give to BeautifulSoup
     html = browser.html
     page_to_parse = bs(html,"html.parser")
@@ -60,6 +66,8 @@ def scrape():
     # get the base url
     base_url = "{0.scheme}://{0.netloc}".format(urlsplit(url))
     browser.visit(url)
+    # give page time to load
+    time.sleep(1)
     html = browser.html
     page_to_parse = bs(html,"html.parser")
     # collect titles and links to hemisphere_image_urls
